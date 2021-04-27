@@ -22,7 +22,7 @@ public class ProductRepository {
     @Autowired
     private NamedParameterJdbcTemplate template;
 
-    private String sql = read("script.sql");
+    private final String sql = read("script.sql");
 
     private static String read(String scriptFileName) {
         try (InputStream is = new ClassPathResource(scriptFileName).getInputStream();
@@ -41,6 +41,6 @@ public class ProductRepository {
                 String.class
         );
         logger.info("Find product names:\n{}", productNames);
-        return productNames.isEmpty()? List.of("Sorry, nothing to display :(") : productNames;
+        return productNames;
     }
 }
